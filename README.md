@@ -55,6 +55,11 @@ I love building modern, responsive, and user-friendly applications.
 ## 📂 Project Structure
 portfolio/
 │── index.html
+│── about.html
+│── skills.html
+│── services.html
+│── projects.html
+│── contact.html
 │── style.css
 │── script.js
 │── assets/

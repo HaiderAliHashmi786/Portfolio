@@ -11,6 +11,8 @@ window.addEventListener("load", () => {
 const progressBar = document.getElementById("progressBar");
 
 window.addEventListener("scroll", () => {
+    if (!progressBar) return;
+
     const scrollTop = document.documentElement.scrollTop;
     const scrollHeight =
         document.documentElement.scrollHeight -
@@ -24,12 +26,12 @@ window.addEventListener("scroll", () => {
 // ===========================
 const themeToggle = document.getElementById("theme-toggle");
 
-if (localStorage.getItem("theme") === "dark") {
+if (themeToggle && localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark");
     themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
 }
 
-themeToggle.addEventListener("click", () => {
+themeToggle?.addEventListener("click", () => {
 
     document.body.classList.toggle("dark");
 
@@ -50,7 +52,7 @@ const menuBtn = document.querySelector(".menu-btn");
 const nav = document.querySelector("nav");
 const navLinks = document.querySelectorAll("nav ul li a");
 
-menuBtn.addEventListener("click", (e) => {
+menuBtn?.addEventListener("click", (e) => {
     e.stopPropagation();
     nav.classList.toggle("active");
 });
@@ -62,7 +64,7 @@ navLinks.forEach(link => {
 });
 
 document.addEventListener("click", (e) => {
-    if (!nav.contains(e.target)) {
+    if (nav && !nav.contains(e.target)) {
         nav.classList.remove("active");
     }
 });
@@ -109,7 +111,7 @@ function type() {
     setTimeout(type, speed);
 }
 
-type();
+if (typing) type();
 
 // ===========================
 // COUNTER ON SCROLL
@@ -123,7 +125,7 @@ window.addEventListener("scroll", () => {
 
     if (started) return;
 
-    if (window.scrollY > stats.offsetTop - 350) {
+    if (stats && window.scrollY > stats.offsetTop - 350) {
 
         started = true;
 
@@ -164,6 +166,8 @@ const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll", () => {
 
+    if (!sections.length) return;
+
     let current = "";
 
     sections.forEach(section => {
@@ -178,7 +182,7 @@ window.addEventListener("scroll", () => {
 
         link.classList.remove("active");
 
-        if (link.getAttribute("href") === "#" + current) {
+        if (link.getAttribute("href").startsWith("#") && link.getAttribute("href") === "#" + current) {
             link.classList.add("active");
         }
 
@@ -192,7 +196,7 @@ window.addEventListener("scroll", () => {
 const contactForm = document.getElementById("contactForm");
 const popup = document.getElementById("popupBox");
 
-contactForm.addEventListener("submit", (e) => {
+contactForm?.addEventListener("submit", (e) => {
 
     e.preventDefault();
 
